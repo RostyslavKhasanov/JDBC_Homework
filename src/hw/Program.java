@@ -31,20 +31,21 @@ public class Program {
 		
 		System.out.println(
 				"Menu \n"
-				+ "1 - Додати країну до БД \n"
-				+ "2 - Додати місто до БД \n"
-				+ "3 - Додати людину до БД \n"
-				+ "4 - Показати список людей \n"
-				+ "5 - Показати список міст \n"
-				+ "6 - Показати список країн \n"
-				+ "7 - Показати інформацію про одну людину по id \n"
-				+ "8 - Показати інформацію про одне місто по id \n"
-				+ "9 -  Показати інформацію про одну країну по id \n"
-				+ "10 - Показати інформацію про людей з одного міста \n"
-				+ "11 - Показати список міст однієї країни \n"
-				+ "12 - Показати інформацію про людину, з якого вона міста і країни \n"
-				+ "13 - Знайти людину за іменем в відповідності з заданим шаблоном \n"
-				+ "14 - Заповнити рандомними даними \n");
+				+ "1 - Add country \n"
+				+ "2 - Add city \n"
+				+ "3 - Add person \n"
+				+ "4 - Show people list \n"
+				+ "5 - Show city list \n"
+				+ "6 - Show country list \n"
+				+ "7 - Show info about one person (id) \n"
+				+ "8 - Show info about one city (id) \n"
+				+ "9 - Show info about one country (id) \n"
+				+ "10 - Show info about people from one country \n"
+				+ "11 - Show city list from one country \n"
+				+ "12 - Show all info about one person (id) \n"
+				+ "13 - Find a person by name in accordance with a given template \n"
+				+ "14 - Fill in the random data \n"
+				+ "exit - Exit from the program");
 		
 		while (exit) {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -52,73 +53,73 @@ public class Program {
 			String menu = bf.readLine();
 			switch (menu) {
 				case "1" : {
-					System.out.println("Введіть назву країни");
+					System.out.println("Enter name of the country:");
 					String name = bf.readLine();
 					System.out.println(name);
 					insertCountry(name);
 				} break;
 				
 				case "2" : {
-					System.out.println("Введіть назву країни:");
+					System.out.println("Enter name of the country:");
 					String country_name = bf.readLine();
-					System.out.println("Введіть назву міста:");
+					System.out.println("Enter name of the city:");
 					String cityName = bf.readLine();
 					insertCity(cityName, country_name);
 				} break;
 				
 				case "3" : {
-					System.out.println("Імя:");
+					System.out.println("First name:");
 					String first_name = bf.readLine();
-					System.out.println("Прізвище:");
+					System.out.println("Last name:");
 					String last_name = bf.readLine();
-					System.out.println("Вік:");
+					System.out.println("Age:");
 					int age = Integer.valueOf(bf.readLine());
-					System.out.println("Місто: ");
+					System.out.println("City: ");
 					String city_name = bf.readLine();
 					insertPerson(first_name, last_name, age, city_name);
 				} break;
 				
 				case "4" : {
-					System.out.println("Список людей:");
+					System.out.println("People list:");
 					selectPerson();
 				} break;
 				
 				case "5" : {
-					System.out.println("Список міст:");
+					System.out.println("City list:");
 					selectCity();
 				} break;
 				
 				case "6" : {
-					System.out.println("Список країн:");
+					System.out.println("Country list:");
 					selectCountry();
 				} break;
 				
 				case "7" : {
-					System.out.println("Введіть id:");
+					System.out.println("Enter id:");
 					int id = Integer.valueOf(bf.readLine());
 					selectPerson(id);
 				} break;
 				
 				case "8" : {
-					System.out.println("Введіть id:");
+					System.out.println("Enter id:");
 					int id = Integer.valueOf(bf.readLine());
 					selectCity(id);
 				} break;
 				
 				case "9" : {
-					System.out.println("Введіть id:");
+					System.out.println("Enter id:");
 					int id = Integer.valueOf(bf.readLine());
 					selectCountry(id);
 				} break;
 				
 				case "10" : {
-					System.out.println("Введіть назву міста:");
+					System.out.println("Enter name of the city:");
 					String cityName = bf.readLine();
 					selectPersonFromCity(cityName);
 				} break;
 				
 				case "11" : {
-					System.out.println("Введіть назву країни");
+					System.out.println("Enter name of the country");
 					String name = bf.readLine();
 					selectCityCountry(name);
 				} break;
@@ -128,7 +129,7 @@ public class Program {
 				} break;
 				
 				case "13" : {
-					System.out.println("Введіть щось :");
+					System.out.println("Enter smth.. :");
 					String name = bf.readLine();
 					selectPersonByShablon(name);
 				} break;
@@ -138,10 +139,10 @@ public class Program {
 				} break;
 				
 				case "15" : {
-					System.out.println("Змінити ім'я натисніть - 1 \n"
-							+ "Змінити Прізвище натисніть - 2 \n"
-							+ "Змінити Вік натисніть - 3 \n"
-							+ "Змінити Місто натисніть - 4 \n");
+					System.out.println("Change first name press - 1 \n"
+							+ "Change last name press - 2 \n"
+							+ "Change age press \n"
+							+ "Change city press - 4 \n");
 					String count = bf.readLine();
 					switch (count) {
 						case "1" : {
@@ -269,7 +270,7 @@ public class Program {
 		
 		pstmt.close();
 		} else {
-			System.out.println("Країни не знайдено!");
+			System.out.println("Country does not exists!");
 		}
 	}
 	
@@ -297,7 +298,7 @@ public class Program {
 		pstmt.executeUpdate();
 		pstmt.close();
 		} else {
-			System.out.println("Місто із заданим ім'ям не знайдено");
+			System.out.println("City does not exists!");
 		}
 	}
 	
